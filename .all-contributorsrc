@@ -1,0 +1,61 @@
+{
+  "projectName": "photoshop-python-api",
+  "projectOwner": "loonghao",
+  "repoType": "github",
+  "commitConvention": "angular",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributorsPerLine": 7,
+  "contributors": [
+    {
+      "login": "loonghao",
+      "name": "Hal",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/13111745?v=4",
+      "profile": "https://github.com/loonghao",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "voodraizer",
+      "name": "voodraizer",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1332729?v=4",
+      "profile": "https://github.com/voodraizer",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "brunosly",
+      "name": "brunosly",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/4326547?v=4",
+      "profile": "https://github.com/brunosly",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "tubi-carrillo",
+      "name": "tubi",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/33004093?v=4",
+      "profile": "https://github.com/tubi-carrillo",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "wjxiehaixin",
+      "name": "wjxiehaixin",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/48039822?v=4",
+      "profile": "https://github.com/wjxiehaixin",
+      "contributions": [
+        "bug"
+      ]
+    }
+  ],
+  "skipCi": true
+}
