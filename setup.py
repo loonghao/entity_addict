@@ -1,17 +1,21 @@
 """This setup script packages entity_addict."""
 
+# Import built-in modules
+import re
+
 # Import third-party modules
 from setuptools import setup, find_packages
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-# Import local modules
-import entity_addict
+with open("entity_addict/__init__.py", "r") as file_object:
+    context = file_object.read()
+    version = re.search(r'__version__\s*=\s*"([\d/.]+)"', context).groups()[0]
 
 setup(
     name="entity_addict",
-    version=entity_addict.__version__,
+    version=version,
     packages=find_packages(),
     url="https://github.com/loonghao/entity_addict",
     license="MIT",
