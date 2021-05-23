@@ -49,4 +49,5 @@ def entity_addict(func):
             return Addict(return_value)
         else:
             return return_value
+
     return wrapper

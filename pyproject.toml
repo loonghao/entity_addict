@@ -6,12 +6,15 @@ authors = ["longhao <hal.long@outlook.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
+python = ">=2.7,<2.8 || >=3.5.0"
 addict = "^2.4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = { version = "^6.2.4", markers = "python_version ~= '3.7'" }
-pytest-cases = { version = "^3.5.2", markers = "python_version ~= '3.7'" }
 commitizen = { version = "^2.17.6", markers = "python_version ~= '3.7'" }
+black = { version = "^21.5b1", markers = "python_version ~= '3.7'" }
+isort = { version = "^5.8.0", markers = "python_version ~= '3.7'" }
+tox = "^3.23.1"
 
 
 [tool.commitizen]
@@ -21,3 +24,35 @@ tag_format = "$version"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+version_files = [
+  "pyproject.toml:version",
+  "entity_addict/__version__.py"
+]
+
+[tool.isort]
+profile = "black"
+known_first_party = ["entity_addict", "test"]
+
+[tool.black]
+line-length = 88
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | \.pytest_cache
+  | venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  # The following are specific to Black, you probably don't want those.
+  | blib2to3
+  | tests/data
+  | profiling
+)/
+'''
+
