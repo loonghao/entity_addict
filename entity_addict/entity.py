@@ -2,7 +2,7 @@
 from functools import wraps
 
 # Import third-party modules
-from addict import Dict
+from addict import Addict
 
 
 def entity_addict(func):
@@ -41,12 +41,12 @@ def entity_addict(func):
         if isinstance(return_value, list):
             for value in return_value:
                 if isinstance(value, dict):
-                    lists.append(Dict(value))
+                    lists.append(Addict(value))
                 else:
                     lists.append(value)
             return lists
         elif isinstance(return_value, dict):
-            return Dict(return_value)
+            return Addict(return_value)
         else:
             return return_value
     return wrapper
