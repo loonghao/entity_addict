@@ -2,7 +2,7 @@
 from functools import wraps
 
 # Import third-party modules
-from addict import Addict
+from addict import Dict as Addict  # type: ignore
 
 
 def entity_addict(func):
