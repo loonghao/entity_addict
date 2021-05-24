@@ -20,6 +20,9 @@ def test_list_of_dict():
 def test_multi_list_of_dict():
     @entity_addict
     def get_dict_data_c():
-        return [{"key_name": "value"}, {"key": [{"sub_key1": 1}, {"sub_key2": 2}]}]
+        return [
+            {"key_name": "value"},
+            {"key": [{"sub_key1": 1}, {"sub_key2": 2}]},
+        ]
 
     assert get_dict_data_c()[1].key[1].sub_key2 == 2
