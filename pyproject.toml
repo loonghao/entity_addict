@@ -5,6 +5,8 @@ description = "An extended version of [addict](https://github.com/mewwts/addict)
 authors = ["longhao <hal.long@outlook.com>"]
 license = "MIT"
 homepage = "https://github.com/loonghao/entity_addict"
+keywords = ["dict", "addict", "python"]
+readme = "README.md"
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3.6",
@@ -43,6 +45,9 @@ version_files = [
     "pyproject.toml:version",
     "entity_addict/__version__.py"
 ]
+
+[tool.poetry.build]
+generate-setup-file = false
 
 [tool.isort]
 # Enforce import section headers.
