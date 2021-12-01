@@ -1,15 +1,25 @@
-# Import built-in module
+# Import built-in modules
 from functools import wraps
+from typing import Any
+from typing import Callable
+from typing import TypeVar
+from typing import cast
 
 # Import third-party modules
 from addict import Dict as Addict  # type: ignore
 
+# For an explanation of how these type-hints work see:
+# https://mypy.readthedocs.io/en/stable/generics.html#declaring-decorators
+#
+# The goal here is that functions which get decorated will retain their types.
+__F = TypeVar("__F", bound=Callable[..., Any])
 
-def entity_addict(func):
+
+def entity_addict(func: __F) -> __F:
     """Convert function returns to `Dict`.
 
     Args:
-        func (object): Function name.
+        func: Function name.
 
     Example:
         >>> @entity_addict
@@ -25,7 +35,7 @@ def entity_addict(func):
     """
 
     @wraps(func)
-    def wrapper(*args, **kwargs):
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
         """Wrap function for 'Dict'.
 
         Args:
@@ -50,4 +60,4 @@ def entity_addict(func):
         else:
             return return_value
 
-    return wrapper
+    return cast(__F, wrapper)
