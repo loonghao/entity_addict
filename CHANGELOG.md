@@ -1,3 +1,9 @@
+## v1.2.1 (2021-12-01)
+
+### Perf
+
+- **entity.py**: add typing hint support
+
 ## v1.2.0 (2021-05-24)
 
 ### Fix
