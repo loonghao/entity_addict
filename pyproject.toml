@@ -28,7 +28,7 @@ codecov = "^2.0"
 mypy = "^0.770"
 isort = "^5.7.0"
 pydocstyle = "^5.0.2"
-pre-commit = "^2.6.0"
+pre-commit = "^3.0.0"
 tox = "^3.23.1"
 commitizen = "^2.20.0"
 
