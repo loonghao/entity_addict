@@ -21,7 +21,7 @@ addict = "^2.4.0"
 
 [tool.poetry.dev-dependencies]
 black = "^19.3b0"
-pytest = "^5.0"
+pytest = "^7.0.0"
 flake8 = "^3.6"
 pytest-cov = "^3.0"
 codecov = "^2.0"
