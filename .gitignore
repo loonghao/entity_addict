@@ -6,7 +6,14 @@
 
 # Vim / Notepad++ temp files
 *~
-.*/
+# Tool and editor state directories. Previously this was `.*/`, which also
+# swallowed `.github/` and made it impossible to commit workflows.
+.vscode/
+.venv/
+.mypy_cache/
+.pytest_cache/
+.tox/
+.ruff_cache/
 *.egg-info
 # PyInstaller output
 build/

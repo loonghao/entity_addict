@@ -1,6 +1,8 @@
 [run]
 branch = True
-source = src/photoshop
+# Was `src/photoshop`, copied from another project: coverage then measured a
+# package that does not exist here and collected no data at all.
+source = entity_addict
 
 [report]
 exclude_lines =

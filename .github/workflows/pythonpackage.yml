@@ -1,0 +1,67 @@
+name: Python package
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  python-check:
+    name: Lint and test (${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # pyproject.toml declares `python = "^3.6.1"`, so 3.6 through 3.13 are
+        # all supported on paper. 3.6 and 3.7 are omitted because no current
+        # GitHub-hosted runner provides them; they reached end of life in 2021
+        # and 2023 respectively.
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # The dev-dependency group in pyproject.toml pins tools from 2020
+      # (pytest ^5.0, flake8 ^3.6, black 19.3b0) that do not install on a
+      # modern interpreter, so `poetry install` cannot be used to provision
+      # CI. Install the runtime dependency plus current releases of the same
+      # tools the project already standardises on instead.
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "addict>=2.4.0,<3.0.0"
+          python -m pip install pytest pytest-cov flake8
+
+      # flake8 is the project's lint tool: it is the one .pre-commit-config.yaml
+      # actually runs. pydocstyle is a declared but unused dev dependency
+      # (absent from pre-commit), so it is not gated on here rather than being
+      # switched on with findings suppressed.
+      - name: Lint with flake8
+        # Line length matches [tool.black] line-length in pyproject.toml.
+        # E203 and W503 are not PEP 8 compliant and conflict with black.
+        run: |
+          python -m flake8 entity_addict --max-line-length=88 --extend-ignore=E203,W503
+
+      - name: Test with pytest
+        run: |
+          python -m pytest entity_addict/test -v \
+            --cov=entity_addict --cov-report=xml --cov-report=term
+
+      - name: Upload coverage to Codecov
+        # Coverage upload is what .travis.yml actually did. It is best effort:
+        # a Codecov outage must not fail the build.
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+        continue-on-error: true
